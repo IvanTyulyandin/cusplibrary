@@ -107,7 +107,7 @@ void spmm_csr_pass2(omp::execution_policy<DerivedPolicy>& exec,
     {
         // Compute entries of C
         cusp::detail::temporary_array<IndexType, DerivedPolicy> next(exec, num_cols, unseen);
-        cusp::detail::temporary_array<ValueType, DerivedPolicy> sums(exec, num_cols, ValueType(0));
+        cusp::detail::temporary_array<ValueType, DerivedPolicy> sums(exec, num_cols, initialize(ValueType(0)));
 
         #pragma omp for
         for (int i = 0; i < int(num_rows); i++)
